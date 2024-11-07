@@ -4,6 +4,7 @@ import {
   useRecurringBillingLabel,
   useRecurringProductPrice,
 } from '@/hooks/products'
+import { markdownOptions } from '@/utils/markdown'
 import { ProductStorefront, SubscriptionRecurringInterval } from '@polar-sh/sdk'
 import Markdown from 'markdown-to-jsx'
 import {
@@ -15,7 +16,6 @@ import {
 import { formatCurrencyAndAmount } from 'polarkit/lib/money'
 import { twMerge } from 'tailwind-merge'
 import { resolveBenefitIcon } from '../Benefit/utils'
-import { markdownOpts } from '../Feed/Markdown/markdown'
 
 export interface SubscriptionTierCardProps {
   subscriptionTier: Partial<ProductStorefront>
@@ -79,17 +79,7 @@ const SubscriptionTierCard: React.FC<SubscriptionTierCardProps> = ({
               'prose dark:prose-invert prose-headings:mt-8 prose-headings:font-semibold prose-headings:text-black prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-h4:text-lg prose-h5:text-md dark:prose-headings:text-polar-50 dark:text-polar-300 max-h-64 max-w-4xl overflow-hidden leading-normal text-gray-800',
             )}
           >
-            <Markdown
-              options={{
-                ...markdownOpts,
-                overrides: {
-                  ...markdownOpts.overrides,
-                  a: (props) => (
-                    <a {...props} rel="noopener noreferrer nofollow" />
-                  ),
-                },
-              }}
-            >
+            <Markdown options={markdownOptions}>
               {subscriptionTier.description}
             </Markdown>
           </div>

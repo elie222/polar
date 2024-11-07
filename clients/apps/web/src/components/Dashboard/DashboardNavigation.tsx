@@ -4,7 +4,6 @@ import { MaintainerOrganizationContext } from '@/providers/maintainerOrganizatio
 import { useContext } from 'react'
 import { NavigationContainer } from './NavigationContainer'
 import {
-  useCommunityRoutes,
   useFundingRoutes,
   useGeneralRoutes,
   useOrganizationRoutes,
@@ -16,7 +15,6 @@ const MaintainerNavigation = () => {
 
   const generalRoutesList = useGeneralRoutes(org)
   const fundingRoutes = useFundingRoutes(org)
-  const communityRoutes = useCommunityRoutes(org)
   const organizationRoutes = useOrganizationRoutes(org)
 
   if (!org) {
@@ -27,7 +25,6 @@ const MaintainerNavigation = () => {
     <div className="flex flex-col gap-y-6">
       <NavigationContainer routes={generalRoutesList} />
       <NavigationContainer title="Funding" routes={fundingRoutes} />
-      <NavigationContainer title="Community" routes={communityRoutes} />
       <NavigationContainer title="Organization" routes={organizationRoutes} />
     </div>
   )
